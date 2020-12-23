@@ -8,3 +8,8 @@ const roleDiceButton = document.querySelector('.btn--roll');
 const holdButton = document.querySelector('.btn--hold');
 const dice = document.querySelector('.dice');
 const newGameButton = document.querySelector('.btn--new');
+
+//? Setting the score to 0 and hiding the dice
+elementScore0.textContent = 0;
+elementScore1.textContent = 0;
+dice.classList.add('hidden');
