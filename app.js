@@ -13,3 +13,22 @@ const newGameButton = document.querySelector('.btn--new');
 elementScore0.textContent = 0;
 elementScore1.textContent = 0;
 dice.classList.add('hidden');
+let currentScore = 0;
+//? Firing an event on Dice Button
+roleDiceButton.addEventListener('click', function () {
+   //? generate Random Dice Number
+   let randomDiceNumber = Math.trunc(Math.random() * 6) + 1;
+   console.log(randomDiceNumber);
+   //? Display the Dice
+   dice.classList.remove('hidden');
+   dice.src = `dice-${randomDiceNumber}.png`;
+
+   //? check for rolled 1: if true switch to next player
+   //?check for role 1
+   if (!randomDiceNumber !== 1) {
+      //? and if its not one then the dice to to current score
+      currentScore += randomDiceNumber;
+      elementCurrent0.textContent = currentScore; //!We need to change it later
+   } else {
+   }
+});
