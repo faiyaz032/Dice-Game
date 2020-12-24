@@ -30,6 +30,7 @@ const init = function () {
    elementCurrent1.textContent = 0;
    elementPlayer0.classList.remove('player--winner');
    elementPlayer1.classList.remove('player--winner');
+   elementPlayer0.classList.add('player--active');
    elementPlayer1.classList.remove('player--active');
 };
 
@@ -73,7 +74,7 @@ holdButton.addEventListener('click', function () {
       document.getElementById(`score--${activePlayer}`).textContent = activeMainScore;
 
       //? check if mainScore >= 100
-      if (activeMainScore >= 20) {
+      if (activeMainScore >= 100) {
          playing = false;
          //? finish the game
          document.querySelector(`.player--${activePlayer}`).classList.add('player--winner');
