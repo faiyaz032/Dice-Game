@@ -48,3 +48,12 @@ roleDiceButton.addEventListener('click', function () {
       switchPlayer();
    }
 });
+
+holdButton.addEventListener('click', function () {
+   //? Adding the current score to main score
+   let temporaryScore = (scores[activePlayer] += currentScore);
+   document.getElementById(`score--${activePlayer}`).textContent = temporaryScore;
+
+   //?switch to another player
+   switchPlayer();
+});
