@@ -59,11 +59,12 @@ holdButton.addEventListener('click', function () {
       document.getElementById(`score--${activePlayer}`).textContent = activeMainScore;
 
       //? check if mainScore >= 100
-      if (activeMainScore >= 100) {
+      if (activeMainScore >= 20) {
          playing = false;
          //? finish the game
          document.querySelector(`.player--${activePlayer}`).classList.add('player--winner');
          elementPlayer1.classList.remove('player--active');
+         dice.classList.add('hidden');
       } else {
          //?switch to another player
          switchPlayer();
