@@ -20,6 +20,14 @@ const scores = [0, 0];
 let currentScore = 0;
 let activePlayer = 0;
 
+const switchPlayer = function () {
+   document.getElementById(`current--${activePlayer}`).textContent = 0;
+   currentScore = 0;
+   activePlayer = activePlayer === 0 ? 1 : 0;
+   elementPlayer0.classList.toggle('player--active');
+   elementPlayer1.classList.toggle('player--active');
+};
+
 //? Firing an event on Dice Button
 roleDiceButton.addEventListener('click', function () {
    //? generate Random Dice Number
@@ -37,10 +45,6 @@ roleDiceButton.addEventListener('click', function () {
       document.getElementById(`current--${activePlayer}`).textContent = currentScore;
    } else {
       //? Switch to another player
-      document.getElementById(`current--${activePlayer}`).textContent = 0;
-      currentScore = 0;
-      activePlayer = activePlayer === 0 ? 1 : 0;
-      elementPlayer0.classList.toggle('player--active');
-      elementPlayer1.classList.toggle('player--active');
+      switchPlayer();
    }
 });
