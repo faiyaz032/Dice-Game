@@ -19,6 +19,7 @@ dice.classList.add('hidden');
 const scores = [0, 0];
 let currentScore = 0;
 let activePlayer = 0;
+let playing = true;
 
 const switchPlayer = function () {
    document.getElementById(`current--${activePlayer}`).textContent = 0;
@@ -30,37 +31,42 @@ const switchPlayer = function () {
 
 //? Firing an event on Dice Button
 roleDiceButton.addEventListener('click', function () {
-   //? generate Random Dice Number
-   let randomDiceNumber = Math.trunc(Math.random() * 6) + 1;
-   console.log(randomDiceNumber);
-   //? Display the Dice
-   dice.classList.remove('hidden');
-   dice.src = `dice-${randomDiceNumber}.png`;
+   if (playing) {
+      //? generate Random Dice Number
+      let randomDiceNumber = Math.trunc(Math.random() * 6) + 1;
+      console.log(randomDiceNumber);
+      //? Display the Dice
+      dice.classList.remove('hidden');
+      dice.src = `dice-${randomDiceNumber}.png`;
 
-   //? check for rolled 1: if true switch to next player
-   //?check for role 1
-   if (randomDiceNumber !== 1) {
-      //? and if its not one then then keep rolling dice and add the score to current score
-      currentScore += randomDiceNumber;
-      document.getElementById(`current--${activePlayer}`).textContent = currentScore;
-   } else {
-      //? Switch to another player
-      switchPlayer();
+      //? check for rolled 1: if true switch to next player
+      //?check for role 1
+      if (randomDiceNumber !== 1) {
+         //? and if its not one then then keep rolling dice and add the score to current score
+         currentScore += randomDiceNumber;
+         document.getElementById(`current--${activePlayer}`).textContent = currentScore;
+      } else {
+         //? Switch to another player
+         switchPlayer();
+      }
    }
 });
 
 holdButton.addEventListener('click', function () {
-   //? Adding the current score to main score
-   let activeMainScore = (scores[activePlayer] += currentScore);
-   document.getElementById(`score--${activePlayer}`).textContent = activeMainScore;
+   if (playing) {
+      //? Adding the current score to main score
+      let activeMainScore = (scores[activePlayer] += currentScore);
+      document.getElementById(`score--${activePlayer}`).textContent = activeMainScore;
 
-   //? check if mainScore >= 100
-   if (activeMainScore >= 20) {
-      //? finish the game
-      document.querySelector(`.player--${activePlayer}`).classList.add('player--winner');
-      elementPlayer1.classList.remove('player--active');
-   } else {
-      switchPlayer();
+      //? check if mainScore >= 100
+      if (activeMainScore >= 100) {
+         playing = false;
+         //? finish the game
+         document.querySelector(`.player--${activePlayer}`).classList.add('player--winner');
+         elementPlayer1.classList.remove('player--active');
+      } else {
+         //?switch to another player
+         switchPlayer();
+      }
    }
-   //?switch to another player
 });
