@@ -51,9 +51,16 @@ roleDiceButton.addEventListener('click', function () {
 
 holdButton.addEventListener('click', function () {
    //? Adding the current score to main score
-   let temporaryScore = (scores[activePlayer] += currentScore);
-   document.getElementById(`score--${activePlayer}`).textContent = temporaryScore;
+   let activeMainScore = (scores[activePlayer] += currentScore);
+   document.getElementById(`score--${activePlayer}`).textContent = activeMainScore;
 
+   //? check if mainScore >= 100
+   if (activeMainScore >= 20) {
+      //? finish the game
+      document.querySelector(`.player--${activePlayer}`).classList.add('player--winner');
+      elementPlayer1.classList.remove('player--active');
+   } else {
+      switchPlayer();
+   }
    //?switch to another player
-   switchPlayer();
 });
